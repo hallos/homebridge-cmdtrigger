@@ -19,7 +19,7 @@ Example config.json:
 	    {
 	        "accessory": "CmdTrigger",
 	        "name":      "backup",
-	        "command": 	 "backup -d /home/oscar/Documents -o /home/oscar/"
+	        "command":   "backup -d /home/oscar/Documents -o /home/oscar/"
 	    }
     ]
 ```
