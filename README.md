@@ -24,10 +24,9 @@ Example config.json:
     ]
 ```
 
-This plugin is created with inspiration from homebridge-dummy: https://github.com/nfarina/homebridge-dummy.
-
 With Cmd Trigger plugin you can create any number of fake switches that will execute a CLI command when turned on (and will automatically turn off right afterward, simulating a stateless switch). This can be used to trigger command and scripts on a server running Homebridge via HomeKit. For example by telling Siri to backup your documents.
 
+This plugin was created by extending homebridge-dummy plugin: https://github.com/nfarina/homebridge-dummy.
 
 
 
