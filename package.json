@@ -1,17 +1,17 @@
 {
-  "name": "homebridge-dummy",
-  "version": "0.2.0",
-  "description": "Dummy switches for Homebridge: https://github.com/nfarina/homebridge",
+  "name": "homebridge-cmdtrigger",
+  "version": "0.1.0",
+  "description": "Trigger CLI command on HomeBridge server with Apple HomeKit switch",
   "license": "ISC",
   "keywords": [
     "homebridge-plugin"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/nfarina/homebridge-dummy.git"
+    "url": "git://github.com/hallos/homebridge-cmdtrigger.git"
   },
   "bugs": {
-    "url": "http://github.com/nfarina/homebridge-dummy/issues"
+    "url": "http://github.com/hallos/homebridge-cmdtrigger/issues"
   },
   "engines": {
     "node": ">=0.12.0",
