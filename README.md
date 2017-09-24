@@ -28,6 +28,11 @@ With Cmd Trigger plugin you can create any number of fake switches that will exe
 
 This plugin was created by extending homebridge-dummy plugin: https://github.com/nfarina/homebridge-dummy.
 
+# Installation instructions
+The Plug-in is not uploaded to the npm repositories yet but you can install it easily in the following way:  
+```
+sudo npm install -g https://github.com/hallos/homebridge-cmdtrigger
+```
 
 
 
