@@ -15,6 +15,7 @@ function CmdTrigger(log, config) {
   this.log = log;
   this.name = config.name;
   this.command = config.command;
+  this.delay = config.delay;
 
   this._service = new Service.Switch(this.name);
   this._service.getCharacteristic(Characteristic.On)
@@ -30,10 +31,10 @@ CmdTrigger.prototype._setOn = function(on, callback) {
     //Execute command from config file
     exec(this.command);
     this.log("Command executed: '" + this.command + "'");
-    //Turn off switch again after 500ms
+    //Turn off switch again after delay (default 500ms)
     setTimeout(function() {
       this._service.setCharacteristic(Characteristic.On, false);
-    }.bind(this), 500);
+    }.bind(this), this.delay);
   }
   callback();
 }
