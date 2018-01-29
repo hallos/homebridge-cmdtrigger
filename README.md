@@ -1,18 +1,21 @@
 
 # "Cmd Trigger" Plugin
 
-Example config.json:
+Example config.json with custom delay (in ms) to turn off the switch:
 
 ```
     "accessories": [
         {
           "accessory": "CmdTrigger",
           "name":      "My command",
-          "command":   "echo Hello World"
+          "command":   "echo Hello World",
+          "delay":   "10000"
         }   
     ]
 
 ```
+
+Example config.json with default delay (500ms) to turn off the switch:
 
 ```
     "accessories": [
