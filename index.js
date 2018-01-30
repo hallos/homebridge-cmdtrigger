@@ -27,6 +27,7 @@ CmdTrigger.prototype.getServices = function() {
 }
 
 CmdTrigger.prototype._setOn = function(on, callback) {
+ this.log("Setting '" + this.name + "' " + on);
   if (on) {
     //Execute command from config file
     exec(this.command);
