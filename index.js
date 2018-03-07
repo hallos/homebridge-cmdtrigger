@@ -50,15 +50,7 @@ CmdTrigger.prototype._setOn = function(on, callback) {
     //Turn off switch again after 500ms
     setTimeout(function() {
       this._service.setCharacteristic(Characteristic.On, false);
-    }.bind(this), 1000);
-  } else if (!on && !this.stateful) {
-    //Execute command from config file
-    exec(this.command);
-    this.log("Command executed: '" + this.command + "'");
-    //Turn off switch again after 500ms
-    setTimeout(function() {
-      this._service.setCharacteristic(Characteristic.On, true);
-    }.bind(this), 1000);
+    }.bind(this), this.delay);
   }
   
   if (this.stateful) {
