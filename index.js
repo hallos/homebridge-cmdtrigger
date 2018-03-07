@@ -58,7 +58,7 @@ CmdTrigger.prototype._setOn = function(on, callback) {
     //Turn off switch again after 500ms
     setTimeout(function() {
       this._service.setCharacteristic(Characteristic.On, true);
-    }.bind(this), this.delay);
+    }.bind(this), 1000);
   }
   
   if (this.stateful) {
