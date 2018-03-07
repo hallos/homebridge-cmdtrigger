@@ -15,19 +15,22 @@ Example config.json with custom delay (in ms) to turn off the switch:
 
 ```
 
-Example config.json with default delay (500ms) to turn off the switch:
+Example config.json with stateful switch:
 
 ```
     "accessories": [
 	    {
 	        "accessory": "CmdTrigger",
-	        "name":      "backup",
-	        "command":   "backup -d /home/oscar/Documents -o /home/oscar/"
+	        "name":      "Stafeful Switch",
+	        "command":   "dummy",
+	        "stateful":   "true",
 	    }
     ]
 ```
 
 With Cmd Trigger plugin you can create any number of fake switches that will execute a CLI command when turned on (and will automatically turn off right afterward, simulating a stateless switch). This can be used to trigger command and scripts on a server running Homebridge via HomeKit. For example by telling Siri to backup your documents.
+
+You can also use this plugin as fakeswitch with custom delay, or as a stateful switch.
 
 This plugin was created by extending homebridge-dummy plugin: https://github.com/nfarina/homebridge-dummy.
 
