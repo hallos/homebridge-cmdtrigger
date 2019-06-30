@@ -35,9 +35,8 @@ You can also use this plugin as fakeswitch with custom delay, or as a stateful s
 This plugin was created by extending homebridge-dummy plugin: https://github.com/nfarina/homebridge-dummy.
 
 # Installation instructions
-The Plug-in is not uploaded to the npm repositories yet but you can install it easily in the following way:  
 ```
-sudo chown -R $USER /usr/local && npm install -g https://github.com/hallos/homebridge-cmdtrigger
+$: npm -g install homebridge-cmdtrigger
 ```
 
 
