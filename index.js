@@ -18,6 +18,7 @@ function CmdTrigger(log, config) {
   this.command = config.command;
   this.stateful = config.stateful;
   this.delay = config.delay;
+  this.execAfterDelay = config.execAfterDelay
   this._service = new Service.Switch(this.name);
   
   this.cacheDirectory = HomebridgeAPI.user.persistPath();
@@ -44,13 +45,25 @@ CmdTrigger.prototype.getServices = function() {
 CmdTrigger.prototype._setOn = function(on, callback) {
  this.log("Setting '" + this.name + "' " + on);
   if (on && !this.stateful) {
-    //Execute command from config file
-    exec(this.command);
-    this.log("Command executed: '" + this.command + "'");
-    //Turn off switch again after 500ms
-    setTimeout(function() {
-      this._service.setCharacteristic(Characteristic.On, false);
-    }.bind(this), this.delay);
+
+    if (!this.execAfterDelay) {
+      //Execute command from config file
+      exec(this.command);
+      setTimeout(function() {
+        //Turn off switch again after 500ms
+        this.log("Command executed: '" + this.command + "'");
+        this._service.setCharacteristic(Characteristic.On, false);
+      }.bind(this), this.delay);
+    }
+    else{
+      //Turn off switch and execute command after 500ms
+      setTimeout(function() {
+        exec(this.command);
+        this.log("Command executed: '" + this.command + "'");
+        this._service.setCharacteristic(Characteristic.On, false);
+      }.bind(this), this.delay);
+    }
+   
   }
   
   if (this.stateful) {
