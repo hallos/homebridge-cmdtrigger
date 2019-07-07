@@ -18,7 +18,7 @@ function CmdTrigger(log, config) {
   this.command = config.command;
   this.stateful = config.stateful;
   this.delay = config.delay;
-  this.cmdFirst = config.cmdFirst
+  this.execAfterDelay = config.execAfterDelay
   this._service = new Service.Switch(this.name);
   
   this.cacheDirectory = HomebridgeAPI.user.persistPath();
@@ -46,7 +46,7 @@ CmdTrigger.prototype._setOn = function(on, callback) {
  this.log("Setting '" + this.name + "' " + on);
   if (on && !this.stateful) {
 
-    if (this.cmdFirst) {
+    if (!this.execAfterDelay) {
       //Execute command from config file
       exec(this.command);
       setTimeout(function() {
