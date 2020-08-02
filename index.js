@@ -67,7 +67,20 @@ CmdTrigger.prototype._setOn = function(on, callback) {
   }
   
   if (this.stateful) {
-	this.storage.setItemSync(this.name, on);
+    var cachedState = this.storage.getItemSync(this.name);
+    if (on && ((cachedState === undefined) || (cachedState === false))) {
+      exec(this.command + " on");
+      this.log("Command executed: '" + this.command + " on'");
+      this.storage.setItemSync(this.name, on);
+    }
+    else if(!on && (cachedState === true)) {
+      exec(this.command + " off");
+      this.log("Command executed: '" + this.command +" off'");
+      this.storage.setItemSync(this.name, on);
+    }
+    else {
+      this.log("State was already '" + on + "'");
+    }
   }
 
   callback();
