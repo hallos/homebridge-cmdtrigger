@@ -42,28 +42,26 @@ CmdTrigger.prototype.getServices = function() {
   return [this._service];
 }
 
+
 CmdTrigger.prototype._setOn = function(on, callback) {
  this.log("Setting '" + this.name + "' " + on);
   if (on && !this.stateful) {
-
     if (!this.execAfterDelay) {
-      //Execute command from config file
+      //Execute command from config file and turn switch off again after 800ms
       exec(this.command);
+      this.log("Command executed: '" + this.command + "'");
       setTimeout(function() {
-        //Turn off switch again after 500ms
-        this.log("Command executed: '" + this.command + "'");
         this._service.setCharacteristic(Characteristic.On, false);
-      }.bind(this), this.delay);
+      }.bind(this), 800);
     }
     else{
-      //Turn off switch and execute command after 500ms
+      //Execute command after configured delay and turn switch off again
       setTimeout(function() {
         exec(this.command);
         this.log("Command executed: '" + this.command + "'");
         this._service.setCharacteristic(Characteristic.On, false);
       }.bind(this), this.delay);
     }
-   
   }
   
   if (this.stateful) {
