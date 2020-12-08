@@ -15,9 +15,9 @@ module.exports = function(homebridge) {
 function CmdTrigger(log, config) {
   this.log = log;
   this.name = config.name;
-  this.command = config.command;
+  this.command = config.command ? config.command : "echo HelloWorld";
   this.stateful = config.stateful;
-  this.delay = config.delay;
+  this.delay = config.delay ? config.delay : 800;
   this.execAfterDelay = config.execAfterDelay
   this._service = new Service.Switch(this.name);
   
@@ -47,12 +47,12 @@ CmdTrigger.prototype._setOn = function(on, callback) {
  this.log("Setting '" + this.name + "' " + on);
   if (on && !this.stateful) {
     if (!this.execAfterDelay) {
-      //Execute command from config file and turn switch off again after 800ms
+      //Execute command from config file and turn switch off again after configured delay
       exec(this.command);
       this.log("Command executed: '" + this.command + "'");
       setTimeout(function() {
         this._service.setCharacteristic(Characteristic.On, false);
-      }.bind(this), 800);
+      }.bind(this), this.delay);
     }
     else{
       //Execute command after configured delay and turn switch off again

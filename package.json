@@ -1,6 +1,6 @@
 {
   "name": "homebridge-cmdtrigger",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Trigger CLI command on HomeBridge server with Apple HomeKit switch",
   "license": "ISC",
   "keywords": [
