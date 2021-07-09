@@ -18,6 +18,7 @@ function CmdTrigger(log, config) {
   this.command = config.command ? config.command : "echo HelloWorld";
   this.stateful = config.stateful;
   this.delay = config.delay ? config.delay : 800;
+  this.debug = config.debug ? config.debug : false;
   this.execAfterDelay = config.execAfterDelay
   this._service = new Service.Switch(this.name);
   
@@ -48,8 +49,18 @@ CmdTrigger.prototype._setOn = function(on, callback) {
   if (on && !this.stateful) {
     if (!this.execAfterDelay) {
       //Execute command from config file and turn switch off again after configured delay
-      exec(this.command);
-      this.log("Command executed: '" + this.command + "'");
+      this.log("Executing command: '" + this.command + "'");
+      if(debug){
+        exec(this.command, (err, stdout, stderr) => {
+            if (err) {
+                this.log(err);
+                return;
+            }
+            this.log(stdout);
+        });
+      } else {
+        exec(this.command);
+      }
       setTimeout(function() {
         this._service.setCharacteristic(Characteristic.On, false);
       }.bind(this), this.delay);
@@ -57,8 +68,18 @@ CmdTrigger.prototype._setOn = function(on, callback) {
     else{
       //Execute command after configured delay and turn switch off again
       setTimeout(function() {
-        exec(this.command);
-        this.log("Command executed: '" + this.command + "'");
+        this.log("Executing command: '" + this.command + "'");
+        if(debug){
+            exec(this.command, (err, stdout, stderr) => {
+                if (err) {
+                    this.log(err);
+                    return;
+                }
+                this.log(stdout);
+            });
+        } else {
+            exec(this.command);
+        }
         this._service.setCharacteristic(Characteristic.On, false);
       }.bind(this), this.delay);
     }
