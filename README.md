@@ -1,4 +1,3 @@
-
 # "Cmd Trigger" Plugin
 
 Example config.json with custom delay (in ms) to turn off the switch:
@@ -11,7 +10,7 @@ Example config.json with custom delay (in ms) to turn off the switch:
           "command":   "echo Hello World",
           "delay":   "10000",
           "execAfterDelay": false
-        }   
+        }
     ]
 
 ```
@@ -24,7 +23,8 @@ Example config.json with stateful switch:
 	        "accessory": "CmdTrigger",
 	        "name":      "Stafeful Switch",
 	        "command":   "dummy",
-	        "stateful":   "true",
+	        "stateful":   true,
+	        "debug":      false
 	    }
     ]
 ```
@@ -36,9 +36,7 @@ You can also use this plugin as fakeswitch with custom delay, or as a stateful s
 This plugin was created by extending homebridge-dummy plugin: https://github.com/nfarina/homebridge-dummy.
 
 # Installation instructions
+
 ```
 $: npm -g install homebridge-cmdtrigger
 ```
-
-
-
